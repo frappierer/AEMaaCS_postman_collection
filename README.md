@@ -2,7 +2,7 @@
 (Hopefully) growing Postman Collection for various AEM operations.
 
 The Postman collection is a starting point for AEM developers and consultants. It should help you during, setup, migration, debugging and hotfixes.
-All commands where tested in AEM as a Cloud Service.
+All commands were tested in AEM as a Cloud Service.
 
 Together with the Postman Runner (https://blog.postman.com/using-csv-and-json-files-in-the-postman-collection-runner/) its also a valid bulk edit/migration tool.
 
