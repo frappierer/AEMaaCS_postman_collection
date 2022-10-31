@@ -1,0 +1,1749 @@
+{
+	"info": {
+		"_postman_id": "1621c306-2901-4e56-91c2-6afdbf28ac6e",
+		"name": "AEMaaCs CURL Operations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10404375"
+	},
+	"item": [
+		{
+			"name": "Packages",
+			"item": [
+				{
+					"name": "Install Package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cmd",
+									"value": "install",
+									"type": "default"
+								},
+								{
+									"key": "recursive",
+									"value": "true",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}crx/packmgr/service/.json/etc/packages/my_packages/testmal.zip",
+							"host": [
+								"{{AEMURL}}crx"
+							],
+							"path": [
+								"packmgr",
+								"service",
+								".json",
+								"etc",
+								"packages",
+								"my_packages",
+								"testmal.zip"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "packageName",
+									"value": "testmal2",
+									"type": "default"
+								},
+								{
+									"key": "groupName",
+									"value": "my_packages",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/crx/packmgr/service/.json/etc/packages/my_packages/testmal2?cmd=create",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"crx",
+								"packmgr",
+								"service",
+								".json",
+								"etc",
+								"packages",
+								"my_packages",
+								"testmal2"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "create"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "path",
+									"value": "/etc/packages/my_packages/testmal2.zip",
+									"type": "default"
+								},
+								{
+									"key": "groupName",
+									"value": "my_packages",
+									"type": "default"
+								},
+								{
+									"key": "filter",
+									"value": "[{\"root\" : \"/content/dam/customer/non-validated/ehq/shine/BiDirection-90degrees.gif\", \"rules\":  [{\"modifier\" : \"exclude\", \"pattern\" : \"./renditions/(.+[0-9]+.+)\"}]},{\"root\" : \"/content/dam/customer/non-validated/ehq/advertising-units/online-ad-banners,-coupons/DisplayADS-Bi-Direction-Leaderboard-V2.png\", \"rules\":  [{\"modifier\" : \"exclude\", \"pattern\" : \".*/renditions/(.+[0-9]+.+)\"}]}]",
+									"type": "default"
+								},
+								{
+									"key": "_charset_",
+									"value": "UTF-8",
+									"type": "default"
+								},
+								{
+									"key": "packageName",
+									"value": "testmal2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/crx/packmgr/update.jsp",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"crx",
+								"packmgr",
+								"update.jsp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Package + No Install",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/martinaltmann/Downloads/testmal.zip"
+								},
+								{
+									"key": "force",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "testmal.zip",
+									"type": "default"
+								},
+								{
+									"key": "install",
+									"value": "false",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/crx/packmgr/service.jsp",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"crx",
+								"packmgr",
+								"service.jsp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Package + Install",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/martinaltmann/Downloads/testmal.zip"
+								},
+								{
+									"key": "force",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "testmal.zip",
+									"type": "default"
+								},
+								{
+									"key": "install",
+									"value": "true",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/crx/packmgr/service.jsp",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"crx",
+								"packmgr",
+								"service.jsp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rebuild Package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{AEMURL}}/crx/packmgr/service/.json/etc/packages/my_packages/testmal.zip?cmd=build",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"crx",
+								"packmgr",
+								"service",
+								".json",
+								"etc",
+								"packages",
+								"my_packages",
+								"testmal.zip"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "build"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Replication Actions",
+			"item": [
+				{
+					"name": "Publish/Activate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "path",
+									"value": "/content/uwsrelaunch/de/de/legal-details",
+									"type": "default"
+								},
+								{
+									"key": "cmd",
+									"value": "activate",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/replicate.json",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"replicate.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unpublish/Deactivate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "path",
+									"value": "/content/uwsrelaunch/de/de/legal-details",
+									"type": "default"
+								},
+								{
+									"key": "cmd",
+									"value": "deactivate",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/replicate.json",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"replicate.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pages",
+			"item": [
+				{
+					"name": "Lock Page",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "path",
+									"value": "/content/uwsrelaunch/de/de/legal-details",
+									"type": "default"
+								},
+								{
+									"key": "cmd",
+									"value": "lockPage",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/wcmcommand",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"wcmcommand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlock Page",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "path",
+									"value": "/content/uwsrelaunch/de/de/legal-details",
+									"type": "default"
+								},
+								{
+									"key": "cmd",
+									"value": "unlockPage",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/wcmcommand",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"wcmcommand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Copy Page",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cmd",
+									"value": "copyPage",
+									"type": "text"
+								},
+								{
+									"key": "destParentPath",
+									"value": "/content/uwsrelaunch/de/de",
+									"type": "default"
+								},
+								{
+									"key": "srcPath",
+									"value": "/content/uwsrelaunch/de/de/legal-details",
+									"type": "default"
+								},
+								{
+									"key": "destName",
+									"value": "legalnew",
+									"description": "Name of page (NOT THE TITLE)",
+									"type": "default"
+								},
+								{
+									"key": "shallow",
+									"value": "false",
+									"description": "false = Include children, true= just the single page",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/wcmcommand",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"wcmcommand"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Administration",
+			"item": [
+				{
+					"name": "Create a New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "createUser",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "authorizableId",
+									"value": "Testuser12",
+									"type": "default"
+								},
+								{
+									"key": "rep:password",
+									"value": "12345678",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/libs/granite/security/post/authorizables",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"libs",
+								"granite",
+								"security",
+								"post",
+								"authorizables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a User with a Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "createUser",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "authorizableId",
+									"value": "Testuser12",
+									"type": "default"
+								},
+								{
+									"key": "rep:password",
+									"value": "12345678",
+									"type": "default"
+								},
+								{
+									"key": "profile/gender",
+									"value": "male",
+									"type": "default"
+								},
+								{
+									"key": "profile/email",
+									"value": "test@gmail.com",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/libs/granite/security/post/authorizables",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"libs",
+								"granite",
+								"security",
+								"post",
+								"authorizables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "deleteAuthorizable",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/home/users/M/MO_8EGysWb_nqv1XKoeI",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"home",
+								"users",
+								"M",
+								"MO_8EGysWb_nqv1XKoeI"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a New Group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "createGroup",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "authorizableId",
+									"value": "testGroup1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/libs/granite/security/post/authorizables",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"libs",
+								"granite",
+								"security",
+								"post",
+								"authorizables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "deleteAuthorizable",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/home/groups/D/D_gpOVcQ4Ba_qTFypTOF",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"home",
+								"groups",
+								"D",
+								"D_gpOVcQ4Ba_qTFypTOF"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add user to a group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addMembers",
+									"value": "curladmin",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/home/groups/uwsrelaunch/Mk_Ae_Yo4ovU8_1ygs5D.rw.html",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"home",
+								"groups",
+								"uwsrelaunch",
+								"Mk_Ae_Yo4ovU8_1ygs5D.rw.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove user from group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "removeMembers",
+									"value": "curladmin",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/home/groups/uwsrelaunch/Mk_Ae_Yo4ovU8_1ygs5D.rw.html",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"home",
+								"groups",
+								"uwsrelaunch",
+								"Mk_Ae_Yo4ovU8_1ygs5D.rw.html"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sling Content (Create Folder etc)",
+			"item": [
+				{
+					"name": "Create/Rename a Folder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "jcr:primaryType",
+									"value": "sling:Folder",
+									"type": "default"
+								},
+								{
+									"key": "jcr:content/jcr:title",
+									"value": "English",
+									"type": "default"
+								},
+								{
+									"key": "_charset_",
+									"value": "UTF-8",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/content/dam/wknd/en/newfolder",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"content",
+								"dam",
+								"wknd",
+								"en",
+								"newfolder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Ordered Folder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "jcr:primaryType",
+									"value": "sling:OrderedFolder",
+									"type": "default"
+								},
+								{
+									"key": "jcr:content/jcr:title",
+									"value": "Folder Name",
+									"type": "default"
+								},
+								{
+									"key": "_charset_",
+									"value": "UTF-8",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/content/dam/foldername/de/de/testcurl",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"content",
+								"dam",
+								"foldername",
+								"de",
+								"de",
+								"testcurl"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload File",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/martinaltmann/AEM Demos/Demo files/Smart Crop Images/8874_iPhone-Photos-People-In-Landscapes-27_w1120.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/content/dam/wknd/en/newfolder.createasset.html",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"content",
+								"dam",
+								"wknd",
+								"en",
+								"newfolder.createasset.html"
+							]
+						},
+						"description": "Add .createasset.html to the folder where you want to upload the image to."
+					},
+					"response": []
+				},
+				{
+					"name": "Manipulate JCR Property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "propn name",
+									"value": "asdkasdk",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/content/uwsrelaunch/de/de/standorte-angebote/kliniken/asd/jcr:content",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"content",
+								"uwsrelaunch",
+								"de",
+								"de",
+								"standorte-angebote",
+								"kliniken",
+								"asd",
+								"jcr:content"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reindex Oak Index",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "reindex",
+									"value": "true",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/oak:index/cqTagLucene-3",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"oak:index",
+								"cqTagLucene-3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Page",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": ":operation",
+									"value": "delete",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/content/learning/language-masters/en/test",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"content",
+								"learning",
+								"language-masters",
+								"en",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Content Fragments",
+			"item": [
+				{
+					"name": "Create new CF",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"properties\": {\n    \"cq:model\": \"/conf/component-library/settings/dam/cfm/models/hl7\",\n    \"title\": \"Test\",\n    \"description\": \"test fachbereich über API\",\n    \"elements\": {\n      \"typ\": {\n        \"value\": \"Typ\",\n        \":type\": \"string\"\n      },\n      \"code\": {\n        \"value\": \"Code\",\n        \":type\": \"string\"\n      },\n      \"bez\": {\n        \"value\": \"Bezeichnung\",\n        \":type\": \"string\"\n      },\n        \"desc\": {\n        \"value\": \"Lorem Ipsum.\",\n        \":type\": \"text/plain\"\n      }\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4502/api/assets/component-library/fragments/hl7/testname",
+							"host": [
+								"localhost"
+							],
+							"port": "4502",
+							"path": [
+								"api",
+								"assets",
+								"component-library",
+								"fragments",
+								"hl7",
+								"testname"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Create Namespace",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tag",
+									"value": "news-namespace",
+									"type": "text"
+								},
+								{
+									"key": "jcr:title",
+									"value": "News Namespace",
+									"type": "text"
+								},
+								{
+									"key": "jcr:description",
+									"value": "News Namespace Description",
+									"type": "text"
+								},
+								{
+									"key": "_charset_",
+									"value": "utf-8",
+									"type": "text"
+								},
+								{
+									"key": "cmd",
+									"value": "createTag",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/tagcommand",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"tagcommand"
+							]
+						},
+						"description": "This request will create a Tag namespace in AEM"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Tag",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tag",
+									"value": "politics",
+									"type": "text"
+								},
+								{
+									"key": "jcr:title",
+									"value": "Politics-Title",
+									"type": "text"
+								},
+								{
+									"key": "jcr:description",
+									"value": "Politics-Description",
+									"type": "text"
+								},
+								{
+									"key": "parentTagID",
+									"value": "/content/cq:tags/news-namespace",
+									"type": "text"
+								},
+								{
+									"key": "_charset_",
+									"value": "utf-8",
+									"type": "text"
+								},
+								{
+									"key": "cmd",
+									"value": "createTag",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/tagcommand",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"tagcommand"
+							]
+						},
+						"description": "This request will create a tag in AEM"
+					},
+					"response": []
+				},
+				{
+					"name": "Move Tag",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "X-Requested-With",
+									"value": "XMLHttpRequest",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "Referer",
+									"value": "http://localhost:5502",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "Host",
+									"value": "localhost:5502",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "Origin",
+									"value": "http://localhost:5502",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "_charset_",
+									"value": "utf-8",
+									"type": "text"
+								},
+								{
+									"key": "cmd",
+									"value": "moveTag",
+									"type": "text"
+								},
+								{
+									"key": "path",
+									"value": "/content/cq:tags/oldnamespace/politics",
+									"type": "text"
+								},
+								{
+									"key": "dest",
+									"value": "/content/cq:tags/newnamespace/politics",
+									"description": "Important you need to provide the name of the moved tag as well! ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/tagcommand",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"tagcommand"
+							]
+						},
+						"description": "This request will move a tag in AEM from `path` to `dest`"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Tag",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "X-Requested-With",
+									"value": "XMLHttpRequest",
+									"type": "text"
+								},
+								{
+									"key": "Referer",
+									"value": "http://localhost:5502",
+									"type": "text"
+								},
+								{
+									"key": "Host",
+									"value": "localhost:5502",
+									"type": "text"
+								},
+								{
+									"key": "Origin",
+									"value": "http://localhost:5502",
+									"type": "text"
+								},
+								{
+									"key": "_charset_",
+									"value": "utf-8",
+									"type": "text"
+								},
+								{
+									"key": "./jcr:title",
+									"value": "Politics-Title-Edited",
+									"type": "text"
+								},
+								{
+									"key": "./jcr:description",
+									"value": "Politics-Description",
+									"type": "text"
+								},
+								{
+									"key": "./jcr:lastModified",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "./jcr:lastModifiedBy:",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "jcr:primaryType",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "./jcr:title.fr",
+									"value": "French Politics Title",
+									"type": "text"
+								},
+								{
+									"key": "titleReadFrom",
+									"value": " contentNode",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/content/cq:tags/news-website/politics",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"content",
+								"cq:tags",
+								"news-website",
+								"politics"
+							]
+						},
+						"description": "This request will edit a tag in AEM. It also adds a French diction to the tag."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Tag",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "path",
+									"value": "/content/cq:tags/news-namespace/politics",
+									"type": "text"
+								},
+								{
+									"key": "_charset_",
+									"value": "utf-8",
+									"type": "text"
+								},
+								{
+									"key": "cmd",
+									"value": "deleteTag",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/tagcommand",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"tagcommand"
+							]
+						},
+						"description": "This request will delete a tag in AEM"
+					},
+					"response": []
+				},
+				{
+					"name": "List of Tagged Items",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/tagcommand?X-Requested-With=XMLHttpRequest&Referer={{AEMURL}}&Host={{AEMURL}}&_charset_=utf-8&cmd=list&path=/content/cq:tags/customer/categories/lorem",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"tagcommand"
+							],
+							"query": [
+								{
+									"key": "X-Requested-With",
+									"value": "XMLHttpRequest"
+								},
+								{
+									"key": "Referer",
+									"value": "{{AEMURL}}"
+								},
+								{
+									"key": "Host",
+									"value": "{{AEMURL}}"
+								},
+								{
+									"key": "_charset_",
+									"value": "utf-8"
+								},
+								{
+									"key": "cmd",
+									"value": "list"
+								},
+								{
+									"key": "path",
+									"value": "/content/cq:tags/customer/categories/lorem"
+								}
+							]
+						},
+						"description": "This request will list all the items that are tagged with a tag sent in the request"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inbox",
+			"item": [
+				{
+					"name": "Multi Remove via Runner",
+					"item": [
+						{
+							"name": "Multi Remove Page Move - Success Items",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"status\":\"COMPLETE\",\"properties\":{\"comment\":\"\"}}"
+								},
+								"url": {
+									"raw": "{{AEMURL}}/libs/granite/taskmanager/updatetask?taskId={{path}}&selectedAction=SUCCESS&_charset_=utf-8",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"libs",
+										"granite",
+										"taskmanager",
+										"updatetask"
+									],
+									"query": [
+										{
+											"key": "taskId",
+											"value": "{{path}}",
+											"description": "Reads it from csv"
+										},
+										{
+											"key": "selectedAction",
+											"value": "SUCCESS"
+										},
+										{
+											"key": "_charset_",
+											"value": "utf-8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Multi Remove Rollout - Success Items",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"status\":\"COMPLETE\",\"properties\":{\"comment\":\"\"}}"
+								},
+								"url": {
+									"raw": "{{AEMURL}}/libs/granite/taskmanager/updatetask?taskId={{path}}&selectedAction=SUCCESS&_charset_=utf-8",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"libs",
+										"granite",
+										"taskmanager",
+										"updatetask"
+									],
+									"query": [
+										{
+											"key": "taskId",
+											"value": "{{path}}",
+											"description": "Reads it from csv"
+										},
+										{
+											"key": "selectedAction",
+											"value": "SUCCESS"
+										},
+										{
+											"key": "_charset_",
+											"value": "utf-8"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get all Move Success Items",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/querybuilder.json?group.1_group.property=name&group.1_group.property.value=Page%20Move%20-%20Success&group.2_group.property=status&group.2_group.property.value=ACTIVE&group.p.and=true&p.limit=-1&type=granite%3aTask",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"querybuilder.json"
+							],
+							"query": [
+								{
+									"key": "group.1_group.property",
+									"value": "name"
+								},
+								{
+									"key": "group.1_group.property.value",
+									"value": "Page%20Move%20-%20Success"
+								},
+								{
+									"key": "group.2_group.property",
+									"value": "status"
+								},
+								{
+									"key": "group.2_group.property.value",
+									"value": "ACTIVE"
+								},
+								{
+									"key": "group.p.and",
+									"value": "true"
+								},
+								{
+									"key": "p.limit",
+									"value": "-1"
+								},
+								{
+									"key": "type",
+									"value": "granite%3aTask"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Rollout Success Items",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/querybuilder.json?group.1_group.property=name&group.1_group.property.value=Rollout%20-%20Success&group.2_group.property=status&group.2_group.property.value=ACTIVE&group.p.and=true&p.limit=-1&type=granite%3aTask",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"querybuilder.json"
+							],
+							"query": [
+								{
+									"key": "group.1_group.property",
+									"value": "name"
+								},
+								{
+									"key": "group.1_group.property.value",
+									"value": "Rollout%20-%20Success"
+								},
+								{
+									"key": "group.2_group.property",
+									"value": "status"
+								},
+								{
+									"key": "group.2_group.property.value",
+									"value": "ACTIVE"
+								},
+								{
+									"key": "group.p.and",
+									"value": "true"
+								},
+								{
+									"key": "p.limit",
+									"value": "-1"
+								},
+								{
+									"key": "type",
+									"value": "granite%3aTask"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Page Move - Success Items",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"status\":\"COMPLETE\",\"properties\":{\"comment\":\"\"}}"
+						},
+						"url": {
+							"raw": "{{AEMURL}}/libs/granite/taskmanager/updatetask?taskId=886f434a-753d-47b8-939d-fe304a0e0f34/2022-07-27/page_move_-_success&selectedAction=SUCCESS&_charset_=utf-8",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"libs",
+								"granite",
+								"taskmanager",
+								"updatetask"
+							],
+							"query": [
+								{
+									"key": "taskId",
+									"value": "886f434a-753d-47b8-939d-fe304a0e0f34/2022-07-27/page_move_-_success"
+								},
+								{
+									"key": "selectedAction",
+									"value": "SUCCESS"
+								},
+								{
+									"key": "_charset_",
+									"value": "utf-8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Rollout - Success Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"status\":\"COMPLETE\",\"properties\":{\"comment\":\"\"}}"
+						},
+						"url": {
+							"raw": "{{AEMURL}}/libs/granite/taskmanager/updatetask?taskId=/var/taskmanagement/tasks/77918257-c0b9-41f8-904b-c0d67a9c9863/2022-05-30/rollout_-_success0&selectedAction=SUCCESS&_charset_=utf-8",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"libs",
+								"granite",
+								"taskmanager",
+								"updatetask"
+							],
+							"query": [
+								{
+									"key": "taskId",
+									"value": "/var/taskmanagement/tasks/77918257-c0b9-41f8-904b-c0d67a9c9863/2022-05-30/rollout_-_success0"
+								},
+								{
+									"key": "selectedAction",
+									"value": "SUCCESS"
+								},
+								{
+									"key": "_charset_",
+									"value": "utf-8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listing Work Items from the Inbox",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Workflows",
+			"item": [
+				{
+					"name": "Starting a workflow",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "model",
+									"value": "/var/workflow/models/publish-tree-with-children",
+									"type": "text"
+								},
+								{
+									"key": "payloadType",
+									"value": "JCR_PATH",
+									"type": "text"
+								},
+								{
+									"key": "payload",
+									"value": "/content/wknd/us/en",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/etc/workflow/instances",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"etc",
+								"workflow",
+								"instances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listing ALL instances",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{AEMURL}}/etc/workflow/instances.json",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"etc",
+								"workflow",
+								"instances.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listing Running Instances",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{AEMURL}}/etc/workflow/instances.RUNNING.json",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"etc",
+								"workflow",
+								"instances.RUNNING.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{AEMpw}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{AEMuser}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
