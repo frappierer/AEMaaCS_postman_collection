@@ -15,6 +15,12 @@ There are several reasons why i created the repo.
 * Upload of assets (Also a valid runner task)
 * Mass change of user groups (Also a valid runner task)
 
+## Current CURL Commands
+![image](https://user-images.githubusercontent.com/4376185/198990904-fe687e0a-7d2f-40a6-a038-bf40552bc684.png)
+![image](https://user-images.githubusercontent.com/4376185/198990959-ef2f3c0b-7ebd-46d4-b452-a676952114c0.png)
+
+
+
 
 ## How to use
 * Create a classic (non IMS user) within AEM. (I might add IMS support in the future)
