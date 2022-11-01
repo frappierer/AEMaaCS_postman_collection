@@ -32,3 +32,49 @@ There are several reasons why i created the repo.
 As stated above the [Postman Runner](https://blog.postman.com/using-csv-and-json-files-in-the-postman-collection-runner/) is a valid tool for bulk/mass operations. Attached is a video of what I once did for content fragments (to create them in bulk based on a .csv). You don't see the AEM Collection in the video, but the logic is exactly the same. The variable settings in minute 0:30 are best not as seen in the video but set up in the environment.
 
 [<img src="https://previews.jumpshare.com/thumb/815bc01b796dd6f1733c957c5af19493b7a5ec55f400ae203fce6afcc4f6733e46a0a3962fcfdc4944ec31bc16a2a9977188894f46bc8f83e0abd987fd194b54815ed67a13d23159a93de527a2001c4b89a3fa4f9c522f2b2608fb58930f8a8d" width="50%">](https://jmp.sh/v/QEWpWJn4mKaIUB4DqpPh "Postman Runner Demo")
+
+## What is not working in the cloud (or untested)
+
+### Tree Activation
+Tree Activation - Will not work in cloud since path is blocked
+        curl -u admin:admin -F cmd=activate -F ignoredeactivated=true -F onlymodified=true
+        -F path=/content/geometrixx http://localhost:4502/etc/replication/treeactivation.html
+        
+        
+### Create Replication Agents
+
+curl -u admin:admin ‘http://localhost:4502/bin/wcmcommand’ -H ‘Content-Type: application/x-www-form-urlencoded; charset=UTF-8’ --data ‘cmd=createPage&charset=utf-8&parentPath=/etc/replication/agents.author&title=ReplicationAgentTest&label=&template=/libs/cq/replication/templates/agent’
+
+### BUNDLES:
+
+#### Uninstall a bundle
+
+curl -u admin:admin -daction=uninstall http://localhost:4502/system/console/bundles/“name of bundle”
+
+#### Install a bundle
+        curl -u admin:admin -F action=install -F bundlestartlevel=20 -F
+        bundlefile=@“name of jar.jar” http://localhost:4502/system/console/bundles
+
+#### Build a bundle
+        curl -u admin:admin -F bundleHome=/apps/centrica/bundles/name of bundle -F
+        descriptor=/apps/centrica/bundles/com.centrica.cq.wcm.core-bundle/name_of_bundle.bnd
+        http://localhost:4502/libs/crxde/build
+
+#### Stop a bundle
+        curl -u admin:admin http://localhost:4502/system/console/bundles/org.apache.sling.scripting.jsp
+        -F action=stop
+
+#### Start a bundle
+        curl -u admin:admin http://localhost:4502/system/console/bundles/org.apache.sling.scripting.jsp
+        -F action=start
+
+#### Delete a bundle
+         curl -u admin:admin -X DELETE http://localhost:4502/apps/localhost/install/com.localhost.core-6.2.26-SNAPSHOT.jar
+
+### BACKUP
+Set delay time (optional - default is 10)
+
+curl -u admin:admin -X POST http://localhost:4502/system/console/jmx/com.adobe.granite:type=Repository/a/BackupDelay?value=0
+
+curl -u admin:admin -X POST http://localhost:4502/system/console/jmx/com.adobe.granite%3Atype%3DRepository/op/startBackup/java.lang.String?target=mvtest
+        
