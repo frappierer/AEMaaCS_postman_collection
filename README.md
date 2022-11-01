@@ -6,6 +6,10 @@ All commands were tested in AEM as a Cloud Service.
 
 Together with the [Postman Runner](https://blog.postman.com/using-csv-and-json-files-in-the-postman-collection-runner/) its also a valid bulk edit/migration tool.
 
+# Collaboration
+If you want to add a CURL command, i guess its the easiest way to create an issue. I will add it to the collection. Please test it on a working cloud environment first (not localhost!).
+Also: if you notice commands do not work let me know as well.
+
 
 ## Why
 There are several reasons why i created the repo. 
