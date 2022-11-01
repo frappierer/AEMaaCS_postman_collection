@@ -10,6 +10,35 @@
 			"name": "Packages",
 			"item": [
 				{
+					"name": "List Packages",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "reindex",
+									"value": "true",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/crx/packmgr/list.jsp",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"crx",
+								"packmgr",
+								"list.jsp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Install Package",
 					"request": {
 						"method": "POST",
@@ -756,6 +785,61 @@
 					"response": []
 				},
 				{
+					"name": "Copy Folder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "jcr:primaryType",
+									"value": "sling:Folder",
+									"type": "default"
+								},
+								{
+									"key": "jcr:content/jcr:title",
+									"value": "English",
+									"type": "default"
+								},
+								{
+									"key": "_charset_",
+									"value": "UTF-8",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/content/dam/altmanntest?:operation=copy&:dest=/content/dam/altmanntest2",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"content",
+								"dam",
+								"altmanntest"
+							],
+							"query": [
+								{
+									"key": ":operation",
+									"value": "copy"
+								},
+								{
+									"key": ":dest",
+									"value": "/content/dam/altmanntest2",
+									"description": "Where to copy / Destination"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create a Ordered Folder",
 					"request": {
 						"method": "POST",
@@ -917,6 +1001,50 @@
 								"language-masters",
 								"en",
 								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Component from a page",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": ":operation",
+									"value": "delete",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/content/anguage-masters/en/page/jcr:content/root/container/container_41051136/container_1163782807/container/productteaser",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"content",
+								"anguage-masters",
+								"en",
+								"page",
+								"jcr:content",
+								"root",
+								"container",
+								"container_41051136",
+								"container_1163782807",
+								"container",
+								"productteaser"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1707,6 +1835,697 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "JCR Query Examples",
+			"item": [
+				{
+					"name": "Pages",
+					"item": [
+						{
+							"name": "Full text search",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?group.1_group.fulltext=Öffnungszeiten&group.2_group.fulltext=comwrap&group.p.or=true&orderby.sort=desc&p.excerpt=true&path=/content&type=cq:Page",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "group.1_group.fulltext",
+											"value": "Öffnungszeiten"
+										},
+										{
+											"key": "group.2_group.fulltext",
+											"value": "comwrap"
+										},
+										{
+											"key": "group.p.or",
+											"value": "true"
+										},
+										{
+											"key": "orderby.sort",
+											"value": "desc"
+										},
+										{
+											"key": "p.excerpt",
+											"value": "true"
+										},
+										{
+											"key": "path",
+											"value": "/content"
+										},
+										{
+											"key": "type",
+											"value": "cq:Page"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pages within path",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=cq:Page&path=/content/rw/en/cafes-shops-service/&property=jcr:content/root/responsivegrid_500405931/location/terminal&property.value=%/de/%&property.operation=like&p.limit=-1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "cq:Page"
+										},
+										{
+											"key": "path",
+											"value": "/content/rw/en/cafes-shops-service/"
+										},
+										{
+											"key": "property",
+											"value": "jcr:content/root/responsivegrid_500405931/location/terminal"
+										},
+										{
+											"key": "property.value",
+											"value": "%/de/%"
+										},
+										{
+											"key": "property.operation",
+											"value": "like"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pages with certain component property",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=cq:Page&path=/content/rw/en/cafes-shops-service/&property=jcr:content/root/responsivegrid_500405931/location/terminal&property.value=%/de/%&property.operation=like&p.limit=-1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "cq:Page"
+										},
+										{
+											"key": "path",
+											"value": "/content/rw/en/cafes-shops-service/"
+										},
+										{
+											"key": "property",
+											"value": "jcr:content/root/responsivegrid_500405931/location/terminal"
+										},
+										{
+											"key": "property.value",
+											"value": "%/de/%",
+											"description": "Will get all pages with /de/ within the ..location/terminal property"
+										},
+										{
+											"key": "property.operation",
+											"value": "like"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pages with NOT certain component property",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=cq:Page&path=/content/rw/en/cafes-shops-service/&property=jcr:content/root/responsivegrid_500405931/location/terminal&property.value!=%/de/%&property.operation=like&p.limit=-1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "cq:Page"
+										},
+										{
+											"key": "path",
+											"value": "/content/rw/en/cafes-shops-service/"
+										},
+										{
+											"key": "property",
+											"value": "jcr:content/root/responsivegrid_500405931/location/terminal"
+										},
+										{
+											"key": "property.value!",
+											"value": "%/de/%",
+											"description": "Will get all pages with /de/ within the ..location/terminal property"
+										},
+										{
+											"key": "property.operation",
+											"value": "like"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pages with one (OR) of the properties",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?group.p.or=true&group.1_group.path=/content/rw/en/cafes-shops-service/&group.1_group.type=cq:Page&group.1_group.property=jcr:content/root/responsivegrid_500405931/location/terminal&group.1_group.property.value=%/de/%&group.1_group.property.operation=like&group.2_group.path=/content/rw/en/cafes-shops-service/&group.2_group.type=cq:Page&group.2_group.property=jcr:content/root/responsivegrid_500405931/location/area&group.2_group.property.value=%/de/%&group.2_group.property.operation=like&p.limit=-1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "group.p.or",
+											"value": "true"
+										},
+										{
+											"key": "group.1_group.path",
+											"value": "/content/rw/en/cafes-shops-service/"
+										},
+										{
+											"key": "group.1_group.type",
+											"value": "cq:Page"
+										},
+										{
+											"key": "group.1_group.property",
+											"value": "jcr:content/root/responsivegrid_500405931/location/terminal"
+										},
+										{
+											"key": "group.1_group.property.value",
+											"value": "%/de/%"
+										},
+										{
+											"key": "group.1_group.property.operation",
+											"value": "like"
+										},
+										{
+											"key": "group.2_group.path",
+											"value": "/content/rw/en/cafes-shops-service/"
+										},
+										{
+											"key": "group.2_group.type",
+											"value": "cq:Page"
+										},
+										{
+											"key": "group.2_group.property",
+											"value": "jcr:content/root/responsivegrid_500405931/location/area"
+										},
+										{
+											"key": "group.2_group.property.value",
+											"value": "%/de/%"
+										},
+										{
+											"key": "group.2_group.property.operation",
+											"value": "like"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pages with all (AND) of the properties",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?group.p.or=false&group.1_group.path=/content/rw/en/cafes-shops-service/&group.1_group.type=cq:Page&group.1_group.property=jcr:content/root/responsivegrid_500405931/location/terminal&group.1_group.property.value=%/de/%&group.1_group.property.operation=like&group.2_group.path=/content/rw/en/cafes-shops-service/&group.2_group.type=cq:Page&group.2_group.property=jcr:content/cq:lastReplicationAction&group.2_group.property.value=Active&group.2_group.property.operation=like&p.limit=-1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "group.p.or",
+											"value": "false"
+										},
+										{
+											"key": "group.1_group.path",
+											"value": "/content/rw/en/cafes-shops-service/"
+										},
+										{
+											"key": "group.1_group.type",
+											"value": "cq:Page"
+										},
+										{
+											"key": "group.1_group.property",
+											"value": "jcr:content/root/responsivegrid_500405931/location/terminal"
+										},
+										{
+											"key": "group.1_group.property.value",
+											"value": "%/de/%"
+										},
+										{
+											"key": "group.1_group.property.operation",
+											"value": "like"
+										},
+										{
+											"key": "group.2_group.path",
+											"value": "/content/rw/en/cafes-shops-service/"
+										},
+										{
+											"key": "group.2_group.type",
+											"value": "cq:Page"
+										},
+										{
+											"key": "group.2_group.property",
+											"value": "jcr:content/cq:lastReplicationAction"
+										},
+										{
+											"key": "group.2_group.property.value",
+											"value": "Active"
+										},
+										{
+											"key": "group.2_group.property.operation",
+											"value": "like"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Assets",
+					"item": [
+						{
+							"name": "Get Assets within path",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=dam:Asset&path=/content/rw/en/cafes-shops-service/&p.limit=-1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "dam:Asset"
+										},
+										{
+											"key": "path",
+											"value": "/content/rw/en/cafes-shops-service/"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Assets that have renditions",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=dam:Asset&path=/content/rw/en/cafes-shops-service/&p.limit=-1&property=jcr:content/renditions/cq5dam.thumbnail.140.100.png/jcr:content/jcr:lastModifiedBy&property.value=dam-writer-service",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "dam:Asset"
+										},
+										{
+											"key": "path",
+											"value": "/content/rw/en/cafes-shops-service/"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										},
+										{
+											"key": "property",
+											"value": "jcr:content/renditions/cq5dam.thumbnail.140.100.png/jcr:content/jcr:lastModifiedBy"
+										},
+										{
+											"key": "property.value",
+											"value": "dam-writer-service"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Assets that have NOT a certain property",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?group.p.or=false&group.1_group.type=dam:AssetContent&group.1_group.path=/content/dam/de/de/webdaten-assets/allgemeiner-datenpool&group.1_group.property=metadata/cq:tags&group.1_group.property.operation=exists&group.2_group.type=dam:AssetContent&group.2_group.path=/content/dam/de/de/webdaten-assets/allgemeiner-datenpool&group.2_group.property=metadata/cq:tags&group.2_group.property.value=tagname:%&group.2_group.property.operation=like&group.2_group.p.not=true&p.limit=-1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "group.p.or",
+											"value": "false"
+										},
+										{
+											"key": "group.1_group.type",
+											"value": "dam:AssetContent"
+										},
+										{
+											"key": "group.1_group.path",
+											"value": "/content/dam/de/de/webdaten-assets/allgemeiner-datenpool"
+										},
+										{
+											"key": "group.1_group.property",
+											"value": "metadata/cq:tags"
+										},
+										{
+											"key": "group.1_group.property.operation",
+											"value": "exists"
+										},
+										{
+											"key": "group.2_group.type",
+											"value": "dam:AssetContent"
+										},
+										{
+											"key": "group.2_group.path",
+											"value": "/content/dam/de/de/webdaten-assets/allgemeiner-datenpool"
+										},
+										{
+											"key": "group.2_group.property",
+											"value": "metadata/cq:tags"
+										},
+										{
+											"key": "group.2_group.property.value",
+											"value": "tagname:%"
+										},
+										{
+											"key": "group.2_group.property.operation",
+											"value": "like"
+										},
+										{
+											"key": "group.2_group.p.not",
+											"value": "true"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all dublicate Assets",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?group.p.or=false&group.1_group.type=dam:AssetContent&group.1_group.path=/content/dam/de/de/webdaten-assets/allgemeiner-datenpool&group.1_group.property=metadata/cq:tags&group.1_group.property.operation=exists&group.2_group.type=dam:AssetContent&group.2_group.path=/content/dam/de/de/webdaten-assets/allgemeiner-datenpool&group.2_group.property=metadata/cq:tags&group.2_group.property.value=tagname:%&group.2_group.property.operation=like&group.2_group.p.not=true&p.limit=-1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "group.p.or",
+											"value": "false"
+										},
+										{
+											"key": "group.1_group.type",
+											"value": "dam:AssetContent"
+										},
+										{
+											"key": "group.1_group.path",
+											"value": "/content/dam/de/de/webdaten-assets/allgemeiner-datenpool"
+										},
+										{
+											"key": "group.1_group.property",
+											"value": "metadata/cq:tags"
+										},
+										{
+											"key": "group.1_group.property.operation",
+											"value": "exists"
+										},
+										{
+											"key": "group.2_group.type",
+											"value": "dam:AssetContent"
+										},
+										{
+											"key": "group.2_group.path",
+											"value": "/content/dam/de/de/webdaten-assets/allgemeiner-datenpool"
+										},
+										{
+											"key": "group.2_group.property",
+											"value": "metadata/cq:tags"
+										},
+										{
+											"key": "group.2_group.property.value",
+											"value": "tagname:%"
+										},
+										{
+											"key": "group.2_group.property.operation",
+											"value": "like"
+										},
+										{
+											"key": "group.2_group.p.not",
+											"value": "true"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all jpgs with > 1MB",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?path=/content/dam&nodename=*.jpg&rangeproperty.property=@jcr:content/metadata/dam:size&rangeproperty.lowerBound=1048576&rangeproperty.lowerOperation=<",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "path",
+											"value": "/content/dam"
+										},
+										{
+											"key": "nodename",
+											"value": "*.jpg"
+										},
+										{
+											"key": "rangeproperty.property",
+											"value": "@jcr:content/metadata/dam:size"
+										},
+										{
+											"key": "rangeproperty.lowerBound",
+											"value": "1048576"
+										},
+										{
+											"key": "rangeproperty.lowerOperation",
+											"value": "<"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
