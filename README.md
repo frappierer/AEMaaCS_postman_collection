@@ -16,8 +16,10 @@ There are several reasons why i created the repo.
 * Mass change of user groups (Also a valid runner task)
 
 ## Current CURL Commands
-![image](https://user-images.githubusercontent.com/4376185/198990904-fe687e0a-7d2f-40a6-a038-bf40552bc684.png)
-![image](https://user-images.githubusercontent.com/4376185/198990959-ef2f3c0b-7ebd-46d4-b452-a676952114c0.png)
+![image](https://user-images.githubusercontent.com/4376185/199194096-969b27f1-9e79-44bd-9290-86a6ee493880.png)
+![image](https://user-images.githubusercontent.com/4376185/199194128-a8caed88-aca6-4f2d-828e-ba556486029f.png)
+![image](https://user-images.githubusercontent.com/4376185/199194175-a38180ab-d3c0-4f49-9ab0-c686e4c5e4f8.png)
+
 
 ## How to use
 * Create a classic (non IMS user) [within AEM](https://experienceleague.adobe.com/docs/experience-manager-64/forms/administrator-help/setup-organize-users/adding-configuring-users.html?lang=en). I might add IMS support in the future.
