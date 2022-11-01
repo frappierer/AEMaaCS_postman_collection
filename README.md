@@ -37,6 +37,19 @@ As stated above the [Postman Runner](https://blog.postman.com/using-csv-and-json
 
 [<img src="https://previews.jumpshare.com/thumb/815bc01b796dd6f1733c957c5af19493b7a5ec55f400ae203fce6afcc4f6733e46a0a3962fcfdc4944ec31bc16a2a9977188894f46bc8f83e0abd987fd194b54815ed67a13d23159a93de527a2001c4b89a3fa4f9c522f2b2608fb58930f8a8d" width="50%">](https://jmp.sh/v/QEWpWJn4mKaIUB4DqpPh "Postman Runner Demo")
 
+### Example
+Lets assume you want to bulk change a certain property (lets say the jcr:title) for a subset of pages.
+* First you do the necessary JCR query to get the pages you need. (eg. get all pages that are under /path/to/content. See JCR Query Examples in the collection). Eg: ![image](https://user-images.githubusercontent.com/4376185/199217904-937f8678-aacd-4db1-b837-796bdd05a4e2.png)
+* You convert it to csv using https://www.convertcsv.com/json-to-csv.htm ( i know you can directly use a .json in the runner, so you can also do that)
+* You add the needed property per row to the .csv
+* Once you have the JCR Query output converted to csv you can use the runner to iterate through the pages and edit the needed property (See Video above)
+
+The used csv. could look like this:
+| Path to property  | New Title |
+| ------------- | ------------- |
+| /content/page1/jcr:content  | New Title 1  |
+| /content/page2/jcr:content  | New Title 2  |
+
 ## What is not working in the cloud (or untested)
 
 ### Tree Activation
