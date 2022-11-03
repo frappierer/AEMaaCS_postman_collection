@@ -491,6 +491,37 @@
 			"name": "User Administration",
 			"item": [
 				{
+					"name": "Runner Examples",
+					"item": [
+						{
+							"name": "Bulk Add group to group",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "addMembers",
+											"value": "{{ims}}",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}{{path}}.rw.html",
+									"host": [
+										"{{AEMURL}}{{path}}",
+										"rw",
+										"html"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Create a New User",
 					"request": {
 						"method": "POST",
@@ -703,6 +734,37 @@
 								"groups",
 								"uwsrelaunch",
 								"Mk_Ae_Yo4ovU8_1ygs5D.rw.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add group to group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addMembers",
+									"value": "test1",
+									"description": "Group Name",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/home/groups/0/0kzzxoKzK7yhX9uUmHcy.rw.html",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"home",
+								"groups",
+								"0",
+								"0kzzxoKzK7yhX9uUmHcy.rw.html"
 							]
 						}
 					},
@@ -1478,10 +1540,10 @@
 			"name": "Inbox",
 			"item": [
 				{
-					"name": "Multi Remove via Runner",
+					"name": "Runner Examples",
 					"item": [
 						{
-							"name": "Multi Remove Page Move - Success Items",
+							"name": "Clean up \"Page Move - Success Items\"",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -1520,7 +1582,7 @@
 							"response": []
 						},
 						{
-							"name": "Multi Remove Rollout - Success Items",
+							"name": "Clean up \"Rollout - Success Items\"",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -1680,7 +1742,7 @@
 							"raw": "{\"status\":\"COMPLETE\",\"properties\":{\"comment\":\"\"}}"
 						},
 						"url": {
-							"raw": "{{AEMURL}}/libs/granite/taskmanager/updatetask?taskId=886f434a-753d-47b8-939d-fe304a0e0f34/2022-07-27/page_move_-_success&selectedAction=SUCCESS&_charset_=utf-8",
+							"raw": "{{AEMURL}}/libs/granite/taskmanager/updatetask?taskId=c302d7b6-4330-4a13-9bcb-21e2d12e1cec/2022-01-26/page_move_-_success&selectedAction=SUCCESS&_charset_=utf-8",
 							"host": [
 								"{{AEMURL}}"
 							],
@@ -1693,7 +1755,7 @@
 							"query": [
 								{
 									"key": "taskId",
-									"value": "886f434a-753d-47b8-939d-fe304a0e0f34/2022-07-27/page_move_-_success"
+									"value": "c302d7b6-4330-4a13-9bcb-21e2d12e1cec/2022-01-26/page_move_-_success"
 								},
 								{
 									"key": "selectedAction",
@@ -1750,7 +1812,18 @@
 					"name": "Listing Work Items from the Inbox",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{AEMURL}}/bin/workflow/inbox",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"workflow",
+								"inbox"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1839,6 +1912,91 @@
 			]
 		},
 		{
+			"name": "Distribution",
+			"item": [
+				{
+					"name": "Get distribution Agents",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "path",
+									"value": "/content/uwsrelaunch/de/de/legal-details",
+									"type": "default"
+								},
+								{
+									"key": "cmd",
+									"value": "lockPage",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/libs/sling/distribution/settings/agents.json",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"libs",
+								"sling",
+								"distribution",
+								"settings",
+								"agents.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Logs for Publish Agent",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "path",
+									"value": "/content/uwsrelaunch/de/de/legal-details",
+									"type": "default"
+								},
+								{
+									"key": "cmd",
+									"value": "lockPage",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/libs/sling/distribution/services/agents/publish/log.txt",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"libs",
+								"sling",
+								"distribution",
+								"services",
+								"agents",
+								"publish",
+								"log.txt"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "JCR Query Examples",
 			"item": [
 				{
@@ -1918,7 +2076,7 @@
 									]
 								},
 								"url": {
-									"raw": "{{AEMURL}}/bin/querybuilder.json?type=cq:Page&path=/content/rw/en/cafes-shops-service/&property=jcr:content/root/responsivegrid_500405931/location/terminal&property.value=%/de/%&property.operation=like&p.limit=-1",
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=cq:Page&path=/content&p.limit=-1",
 									"host": [
 										"{{AEMURL}}"
 									],
@@ -1933,19 +2091,22 @@
 										},
 										{
 											"key": "path",
-											"value": "/content/rw/en/cafes-shops-service/"
+											"value": "/content"
 										},
 										{
 											"key": "property",
-											"value": "jcr:content/root/responsivegrid_500405931/location/terminal"
+											"value": "jcr:content/root/responsivegrid_500405931/location/terminal",
+											"disabled": true
 										},
 										{
 											"key": "property.value",
-											"value": "%/de/%"
+											"value": "%/de/%",
+											"disabled": true
 										},
 										{
 											"key": "property.operation",
-											"value": "like"
+											"value": "like",
+											"disabled": true
 										},
 										{
 											"key": "p.limit",
@@ -2413,7 +2574,7 @@
 									]
 								},
 								"url": {
-									"raw": "{{AEMURL}}/bin/querybuilder.json?group.p.or=false&group.1_group.type=dam:AssetContent&group.1_group.path=/content/dam/de/de/webdaten-assets/allgemeiner-datenpool&group.1_group.property=metadata/cq:tags&group.1_group.property.operation=exists&group.2_group.type=dam:AssetContent&group.2_group.path=/content/dam/de/de/webdaten-assets/allgemeiner-datenpool&group.2_group.property=metadata/cq:tags&group.2_group.property.value=tagname:%&group.2_group.property.operation=like&group.2_group.p.not=true&p.limit=-1",
+									"raw": "{{AEMURL}}/bin/querybuilder.json?p.hits=selective&path=/content/dam&p.properties=jcr:path%20jcr:content/metadata/dam:sha1&p.limit=-1&property=jcr:content/metadata/dam:sha1&property.operation=exists",
 									"host": [
 										"{{AEMURL}}"
 									],
@@ -2423,52 +2584,28 @@
 									],
 									"query": [
 										{
-											"key": "group.p.or",
-											"value": "false"
+											"key": "p.hits",
+											"value": "selective"
 										},
 										{
-											"key": "group.1_group.type",
-											"value": "dam:AssetContent"
+											"key": "path",
+											"value": "/content/dam"
 										},
 										{
-											"key": "group.1_group.path",
-											"value": "/content/dam/de/de/webdaten-assets/allgemeiner-datenpool"
-										},
-										{
-											"key": "group.1_group.property",
-											"value": "metadata/cq:tags"
-										},
-										{
-											"key": "group.1_group.property.operation",
-											"value": "exists"
-										},
-										{
-											"key": "group.2_group.type",
-											"value": "dam:AssetContent"
-										},
-										{
-											"key": "group.2_group.path",
-											"value": "/content/dam/de/de/webdaten-assets/allgemeiner-datenpool"
-										},
-										{
-											"key": "group.2_group.property",
-											"value": "metadata/cq:tags"
-										},
-										{
-											"key": "group.2_group.property.value",
-											"value": "tagname:%"
-										},
-										{
-											"key": "group.2_group.property.operation",
-											"value": "like"
-										},
-										{
-											"key": "group.2_group.p.not",
-											"value": "true"
+											"key": "p.properties",
+											"value": "jcr:path%20jcr:content/metadata/dam:sha1"
 										},
 										{
 											"key": "p.limit",
 											"value": "-1"
+										},
+										{
+											"key": "property",
+											"value": "jcr:content/metadata/dam:sha1"
+										},
+										{
+											"key": "property.operation",
+											"value": "exists"
 										}
 									]
 								}
@@ -2519,6 +2656,73 @@
 										{
 											"key": "rangeproperty.lowerOperation",
 											"value": "<"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Groups / Users",
+					"item": [
+						{
+							"name": "Get Groups",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?p.limit=-1&path=/home/groups&p.hits=selective&p.properties=jcr:path rep:authorizableId&p.nodedepth=1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "dam:Asset",
+											"disabled": true
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										},
+										{
+											"key": "path",
+											"value": "/home/groups"
+										},
+										{
+											"key": "p.hits",
+											"value": "selective",
+											"description": "Get Selective Props in response. "
+										},
+										{
+											"key": "p.properties",
+											"value": "jcr:path rep:authorizableId"
+										},
+										{
+											"key": "p.nodedepth",
+											"value": "1"
+										},
+										{
+											"key": "p.hits",
+											"value": "all",
+											"description": "Get all properties (deselect p.hits=selective and the p.properties param)",
+											"disabled": true
 										}
 									]
 								}
