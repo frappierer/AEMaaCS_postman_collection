@@ -89,7 +89,6 @@ curl -u admin:admin -daction=uninstall http://localhost:4502/system/console/bund
          curl -u admin:admin -X DELETE http://localhost:4502/apps/localhost/install/com.localhost.core-6.2.26-SNAPSHOT.jar
 
 ### BACKUP
-Set delay time (optional - default is 10)
 
 curl -u admin:admin -X POST http://localhost:4502/system/console/jmx/com.adobe.granite:type=Repository/a/BackupDelay?value=0
 
