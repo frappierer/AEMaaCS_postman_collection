@@ -20,9 +20,11 @@ There are several reasons why i created the repo.
 * Mass change of user groups (Also a valid runner task)
 
 ## Current CURL Commands
-![image](https://user-images.githubusercontent.com/4376185/199194096-969b27f1-9e79-44bd-9290-86a6ee493880.png)
-![image](https://user-images.githubusercontent.com/4376185/199194128-a8caed88-aca6-4f2d-828e-ba556486029f.png)
-![image](https://user-images.githubusercontent.com/4376185/199194175-a38180ab-d3c0-4f49-9ab0-c686e4c5e4f8.png)
+![image](https://user-images.githubusercontent.com/4376185/212901329-efc24bf4-2ef5-4063-b87c-238fb9ae8152.png)
+![image](https://user-images.githubusercontent.com/4376185/212901375-7230a375-be5d-4d2c-b87a-745bf714bc1d.png)
+![image](https://user-images.githubusercontent.com/4376185/212901406-c5200abb-a8d0-4f56-919a-2717db215b30.png)
+![image](https://user-images.githubusercontent.com/4376185/212901422-69485bf1-5456-42cf-aad7-fdc98bb03991.png)
+
 
 
 ## How to use
