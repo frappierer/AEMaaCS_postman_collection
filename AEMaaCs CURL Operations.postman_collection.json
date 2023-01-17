@@ -11,8 +11,11 @@
 			"item": [
 				{
 					"name": "List Packages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "formdata",
@@ -20,7 +23,8 @@
 								{
 									"key": "reindex",
 									"value": "true",
-									"type": "default"
+									"type": "default",
+									"disabled": true
 								}
 							]
 						},
@@ -299,6 +303,217 @@
 			"name": "Replication Actions",
 			"item": [
 				{
+					"name": "Runner",
+					"item": [
+						{
+							"name": "Publish",
+							"item": [
+								{
+									"name": "Custom Publish Workflow with Children",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "model",
+													"value": "/var/workflow/models/publish-content-tree-reloaded",
+													"type": "text"
+												},
+												{
+													"key": "payloadType",
+													"value": "JCR_PATH",
+													"type": "text"
+												},
+												{
+													"key": "payload",
+													"value": "{{path}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{AEMURL}}/etc/workflow/instances",
+											"host": [
+												"{{AEMURL}}"
+											],
+											"path": [
+												"etc",
+												"workflow",
+												"instances"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Unpublish",
+							"item": [
+								{
+									"name": "Unpublish/Deactivate Copy",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "path",
+													"value": "{{path}}",
+													"type": "default"
+												},
+												{
+													"key": "cmd",
+													"value": "deactivate",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{AEMURL}}/bin/replicate.json",
+											"host": [
+												"{{AEMURL}}"
+											],
+											"path": [
+												"bin",
+												"replicate.json"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Distribution",
+					"item": [
+						{
+							"name": "Get distribution Agents",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "path",
+											"value": "/content/uwsrelaunch/de/de/legal-details",
+											"type": "default"
+										},
+										{
+											"key": "cmd",
+											"value": "lockPage",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/libs/sling/distribution/settings/agents.json",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"libs",
+										"sling",
+										"distribution",
+										"settings",
+										"agents.json"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Logs for Publish Agent",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "path",
+											"value": "/content/uwsrelaunch/de/de/legal-details",
+											"type": "default"
+										},
+										{
+											"key": "cmd",
+											"value": "lockPage",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/libs/sling/distribution/services/agents/publish/log.txt",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"libs",
+										"sling",
+										"distribution",
+										"services",
+										"agents",
+										"publish",
+										"log.txt"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Custom Publish Workflow with Children Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "model",
+									"value": "/var/workflow/models/publish-content-tree-reloaded",
+									"type": "text"
+								},
+								{
+									"key": "payloadType",
+									"value": "JCR_PATH",
+									"type": "text"
+								},
+								{
+									"key": "payload",
+									"value": "/content/dam/de/de/contentfragmente/content-fragments/uws-persons/person-h",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/etc/workflow/instances",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"etc",
+								"workflow",
+								"instances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Publish/Activate",
 					"request": {
 						"method": "POST",
@@ -341,7 +556,7 @@
 							"formdata": [
 								{
 									"key": "path",
-									"value": "/content/uwsrelaunch/de/de/legal-details",
+									"value": "/content/dam/de/de/contentfragmente/content-fragments/uws-persons/person-h",
 									"type": "default"
 								},
 								{
@@ -363,12 +578,247 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Publish /Active New",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_charset_",
+									"value": "UTF-8",
+									"type": "text"
+								},
+								{
+									"key": "model",
+									"value": "/etc/workflow/models/scheduled_tree_activation/jcr:content/model",
+									"type": "text"
+								},
+								{
+									"key": "workflowTitle",
+									"value": "Publish workflow",
+									"type": "text"
+								},
+								{
+									"key": "payload",
+									"value": "content/experience-fragments/uwsrelaunch/de",
+									"type": "text"
+								},
+								{
+									"key": "contentRootPaths",
+									"value": "{\"contentRootPaths\":[\"content/experience-fragments/uwsrelaunch/de\"]}",
+									"type": "text"
+								},
+								{
+									"key": "onlyDirectChildren",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "includeChildren",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "payloadType",
+									"value": "JCR_PATH",
+									"type": "text"
+								},
+								{
+									"key": "agentId",
+									"value": "publish",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/etc/workflow/instances",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"etc",
+								"workflow",
+								"instances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Item from Rep Queue",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "operation",
+									"value": "delete",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "package-0@4181521",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/libs/sling/distribution/services/agents/publish/queues/9eb75cc1-a920-46ad-abaf-521412709688-publishSubscriber",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"libs",
+								"sling",
+								"distribution",
+								"services",
+								"agents",
+								"publish",
+								"queues",
+								"9eb75cc1-a920-46ad-abaf-521412709688-publishSubscriber"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear rep quere",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "operation",
+									"value": "delete",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "package-0@4181521",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/libs/sling/distribution/services/agents/publish/queues/2913a794-9205-4b01-8f6f-eb7928d03242-publishSubscriber?operation=delete&limit=-1",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"libs",
+								"sling",
+								"distribution",
+								"services",
+								"agents",
+								"publish",
+								"queues",
+								"2913a794-9205-4b01-8f6f-eb7928d03242-publishSubscriber"
+							],
+							"query": [
+								{
+									"key": "operation",
+									"value": "delete"
+								},
+								{
+									"key": "limit",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "Pages",
 			"item": [
+				{
+					"name": "Runner",
+					"item": [
+						{
+							"name": "Bulk Move + set references + publish",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cmd",
+											"value": "movePage",
+											"type": "text"
+										},
+										{
+											"key": "integrity",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "_charset_",
+											"value": "utf-8",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "browser",
+											"type": "text"
+										},
+										{
+											"key": "destParentPath",
+											"value": "{{destParentPath}}",
+											"type": "text"
+										},
+										{
+											"key": "retrieveAll",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "destName",
+											"value": "{{destName}}",
+											"type": "text"
+										},
+										{
+											"key": "srcPath",
+											"value": "{{srcPath}}",
+											"type": "text"
+										},
+										{
+											"key": "operation",
+											"value": "MOVE",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "{{description}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/wcmcommand",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"wcmcommand"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "Lock Page",
 					"request": {
@@ -469,6 +919,79 @@
 									"value": "false",
 									"description": "false = Include children, true= just the single page",
 									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{AEMURL}}/bin/wcmcommand",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"bin",
+								"wcmcommand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move Page Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cmd",
+									"value": "movePage",
+									"type": "text"
+								},
+								{
+									"key": "integrity",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "_charset_",
+									"value": "utf-8",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "browser",
+									"type": "text"
+								},
+								{
+									"key": "destParentPath",
+									"value": "/content/dam/de/de/webdaten-assets/personen/personen-h",
+									"type": "text"
+								},
+								{
+									"key": "retrieveAll",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "destName",
+									"value": "haack-torsten.jpg",
+									"type": "text"
+								},
+								{
+									"key": "srcPath",
+									"value": "/content/dam/de/de/webdaten-assets/personen/personen-h/haack-torsten",
+									"type": "text"
+								},
+								{
+									"key": "operation",
+									"value": "MOVE",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Moving /content/dam/de/de/webdaten-assets/personen/personen-h/h-torsten to /content/dam/de/de/webdaten-assets/personen/personen-h/h-torsten.jpg",
+									"type": "text"
 								}
 							]
 						},
@@ -959,16 +1482,14 @@
 							]
 						},
 						"url": {
-							"raw": "{{AEMURL}}/content/dam/wknd/en/newfolder.createasset.html",
+							"raw": "{{AEMURL}}/content/dam/test.createasset.html",
 							"host": [
 								"{{AEMURL}}"
 							],
 							"path": [
 								"content",
 								"dam",
-								"wknd",
-								"en",
-								"newfolder.createasset.html"
+								"test.createasset.html"
 							]
 						},
 						"description": "Add .createasset.html to the folder where you want to upload the image to."
@@ -1053,16 +1574,19 @@
 							]
 						},
 						"url": {
-							"raw": "{{AEMURL}}/content/learning/language-masters/en/test",
+							"raw": "{{AEMURL}}/content/dam/de/de/webdaten-assets/personen/personen-k/kl-susan",
 							"host": [
 								"{{AEMURL}}"
 							],
 							"path": [
 								"content",
-								"learning",
-								"language-masters",
-								"en",
-								"test"
+								"dam",
+								"de",
+								"de",
+								"webdaten-assets",
+								"personen",
+								"personen-k",
+								"kl-susan"
 							]
 						}
 					},
@@ -1833,6 +2357,59 @@
 			"name": "Workflows",
 			"item": [
 				{
+					"name": "Runner",
+					"item": [
+						{
+							"name": "Full Reprocess Assets Runner",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "profile-select",
+											"value": "full-process",
+											"type": "text"
+										},
+										{
+											"key": "runPostProcess",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "operation",
+											"value": "PROCESS",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Process-{{path}}",
+											"type": "text"
+										},
+										{
+											"key": "folder",
+											"value": "{{path}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/asynccommand",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"asynccommand"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Starting a workflow",
 					"request": {
 						"method": "POST",
@@ -1908,87 +2485,50 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Distribution",
-			"item": [
-				{
-					"name": "Get distribution Agents",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "path",
-									"value": "/content/uwsrelaunch/de/de/legal-details",
-									"type": "default"
-								},
-								{
-									"key": "cmd",
-									"value": "lockPage",
-									"type": "default"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{AEMURL}}/libs/sling/distribution/settings/agents.json",
-							"host": [
-								"{{AEMURL}}"
-							],
-							"path": [
-								"libs",
-								"sling",
-								"distribution",
-								"settings",
-								"agents.json"
-							]
-						}
-					},
-					"response": []
 				},
 				{
-					"name": "Get Logs for Publish Agent",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "Full Reprocess Assets",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "path",
-									"value": "/content/uwsrelaunch/de/de/legal-details",
-									"type": "default"
+									"key": "profile-select",
+									"value": "full-process",
+									"type": "text"
 								},
 								{
-									"key": "cmd",
-									"value": "lockPage",
-									"type": "default"
+									"key": "runPostProcess",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "operation",
+									"value": "PROCESS",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Process-/content/dam/de/de/webdaten-assets/angebot-standorte/",
+									"type": "text"
+								},
+								{
+									"key": "folder",
+									"value": "/content/dam/de/de/webdaten-assets",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{AEMURL}}/libs/sling/distribution/services/agents/publish/log.txt",
+							"raw": "{{AEMURL}}/bin/asynccommand",
 							"host": [
 								"{{AEMURL}}"
 							],
 							"path": [
-								"libs",
-								"sling",
-								"distribution",
-								"services",
-								"agents",
-								"publish",
-								"log.txt"
+								"bin",
+								"asynccommand"
 							]
 						}
 					},
@@ -2009,13 +2549,7 @@
 								"header": [],
 								"body": {
 									"mode": "formdata",
-									"formdata": [
-										{
-											"key": ":operation",
-											"value": "delete",
-											"type": "text"
-										}
-									]
+									"formdata": []
 								},
 								"url": {
 									"raw": "{{AEMURL}}/bin/querybuilder.json?group.1_group.fulltext=Öffnungszeiten&group.2_group.fulltext=comwrap&group.p.or=true&orderby.sort=desc&p.excerpt=true&path=/content&type=cq:Page",
@@ -2061,6 +2595,50 @@
 							"response": []
 						},
 						{
+							"name": "Get all XFs",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?path=/content/experience-fragments/uwsrelaunch/de&type=cq:Page&p.limit=-1&p.hits=selective&p.properties=jcr:path",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "path",
+											"value": "/content/experience-fragments/uwsrelaunch/de"
+										},
+										{
+											"key": "type",
+											"value": "cq:Page"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										},
+										{
+											"key": "p.hits",
+											"value": "selective"
+										},
+										{
+											"key": "p.properties",
+											"value": "jcr:path"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get Pages within path",
 							"request": {
 								"method": "POST",
@@ -2071,12 +2649,13 @@
 										{
 											"key": ":operation",
 											"value": "delete",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{AEMURL}}/bin/querybuilder.json?type=cq:Page&path=/content&p.limit=-1",
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=cq:Page&path=/content/uwsrelaunch/de/de/standorte-angebote&p.limit=-1&nodedepth=1",
 									"host": [
 										"{{AEMURL}}"
 									],
@@ -2091,7 +2670,7 @@
 										},
 										{
 											"key": "path",
-											"value": "/content"
+											"value": "/content/uwsrelaunch/de/de/standorte-angebote"
 										},
 										{
 											"key": "property",
@@ -2111,6 +2690,134 @@
 										{
 											"key": "p.limit",
 											"value": "-1"
+										},
+										{
+											"key": "nodedepth",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Page with Template",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=cq:Page&path=/content/uwsrelaunch/de/de/standorte-angebote/kliniken&property=jcr:content/cq:template&property.value=/conf/uwsrelaunch/settings/wcm/templates/page-clinic-detail&p.limit=-1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "cq:Page"
+										},
+										{
+											"key": "path",
+											"value": "/content/uwsrelaunch/de/de/standorte-angebote/kliniken"
+										},
+										{
+											"key": "property",
+											"value": "jcr:content/cq:template"
+										},
+										{
+											"key": "property.value",
+											"value": "/conf/uwsrelaunch/settings/wcm/templates/page-clinic-detail"
+										},
+										{
+											"key": "property.operation",
+											"value": "like",
+											"disabled": true
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										},
+										{
+											"key": "nodedepth",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Page node with all properties",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?p.limit=-1&path=content/comwrap/en/was-wir-tun&p.hits=selective&p.properties=jcr:path rep:authorizableId&p.nodedepth=1",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "dam:Asset",
+											"disabled": true
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										},
+										{
+											"key": "path",
+											"value": "content/comwrap/en/was-wir-tun"
+										},
+										{
+											"key": "p.hits",
+											"value": "selective",
+											"description": "Get Selective Props in response. "
+										},
+										{
+											"key": "p.properties",
+											"value": "jcr:path rep:authorizableId"
+										},
+										{
+											"key": "p.nodedepth",
+											"value": "1"
+										},
+										{
+											"key": "p.hits",
+											"value": "all",
+											"description": "Get all properties (deselect p.hits=selective and the p.properties param)",
+											"disabled": true
 										}
 									]
 								}
@@ -2128,7 +2835,8 @@
 										{
 											"key": ":operation",
 											"value": "delete",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -2183,7 +2891,8 @@
 										{
 											"key": ":operation",
 											"value": "delete",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -2238,7 +2947,8 @@
 										{
 											"key": ":operation",
 											"value": "delete",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -2316,7 +3026,8 @@
 										{
 											"key": ":operation",
 											"value": "delete",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -2389,6 +3100,66 @@
 					"name": "Assets",
 					"item": [
 						{
+							"name": "Runner",
+							"item": [
+								{
+									"name": "Get Asset Extension",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(responseBody, true)"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": ":operation",
+													"value": "delete",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{AEMURL}}{{path}}/jcr:content/metadata/dam:MIMEtype.json",
+											"host": [
+												"{{AEMURL}}{{path}}"
+											],
+											"path": [
+												"jcr:content",
+												"metadata",
+												"dam:MIMEtype.json"
+											],
+											"query": [
+												{
+													"key": "p.limit",
+													"value": "-1",
+													"disabled": true
+												},
+												{
+													"key": "p.nodedepth",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "Get Assets within path",
 							"request": {
 								"method": "POST",
@@ -2404,7 +3175,7 @@
 									]
 								},
 								"url": {
-									"raw": "{{AEMURL}}/bin/querybuilder.json?type=dam:Asset&path=/content/rw/en/cafes-shops-service/&p.limit=-1",
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=dam:Asset&path=/content/dam/de/de/webdaten-assets/personen/personen-m",
 									"host": [
 										"{{AEMURL}}"
 									],
@@ -2419,11 +3190,22 @@
 										},
 										{
 											"key": "path",
-											"value": "/content/rw/en/cafes-shops-service/"
+											"value": "/content/dam/de/de/webdaten-assets/personen/personen-m"
 										},
 										{
 											"key": "p.limit",
-											"value": "-1"
+											"value": "-1",
+											"disabled": true
+										},
+										{
+											"key": "p.properties",
+											"value": "jcr:content/cq:lastReplicationAction_scene7",
+											"disabled": true
+										},
+										{
+											"key": "p.hits",
+											"value": "selective",
+											"disabled": true
 										}
 									]
 								}
@@ -2474,6 +3256,56 @@
 										{
 											"key": "property.value",
 											"value": "dam-writer-service"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Assets that have renditions Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?type=dam:Asset&path=/content/dam/de/de/webdaten-assets/personen/personen-m&p.limit=-1&property=jcr:content/cq:lastReplicationAction_scene7&property.value=Activate",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "dam:Asset"
+										},
+										{
+											"key": "path",
+											"value": "/content/dam/de/de/webdaten-assets/personen/personen-m"
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										},
+										{
+											"key": "property",
+											"value": "jcr:content/cq:lastReplicationAction_scene7"
+										},
+										{
+											"key": "property.value",
+											"value": "Activate"
 										}
 									]
 								}
@@ -2728,8 +3560,161 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get Groups Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": ":operation",
+											"value": "delete",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{AEMURL}}/bin/querybuilder.json?p.limit=-1&path=/content/learning/language-masters/en&p.properties=jcr:path rep:authorizableId",
+									"host": [
+										"{{AEMURL}}"
+									],
+									"path": [
+										"bin",
+										"querybuilder.json"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "dam:Asset",
+											"disabled": true
+										},
+										{
+											"key": "p.limit",
+											"value": "-1"
+										},
+										{
+											"key": "path",
+											"value": "/content/learning/language-masters/en"
+										},
+										{
+											"key": "p.hits",
+											"value": "selective",
+											"description": "Get Selective Props in response. ",
+											"disabled": true
+										},
+										{
+											"key": "p.properties",
+											"value": "jcr:path rep:authorizableId"
+										},
+										{
+											"key": "p.nodedepth",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "p.hits",
+											"value": "all",
+											"description": "Get all properties (deselect p.hits=selective and the p.properties param)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "ACL Netcentric",
+			"item": [
+				{
+					"name": "Apply ACL Config",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{AEMURL}}/system/console/jmx/biz.netcentric.cq.tools:type=ACTool/op/apply/",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"system",
+								"console",
+								"jmx",
+								"biz.netcentric.cq.tools:type=ACTool",
+								"op",
+								"apply",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Async Jobs",
+			"item": [
+				{
+					"name": "Get Async Jobs as HTML",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{AEMURL}}/mnt/overlay/granite/async/content/asyncjobs/jcr:content/views/list.0.50.html",
+							"host": [
+								"{{AEMURL}}"
+							],
+							"path": [
+								"mnt",
+								"overlay",
+								"granite",
+								"async",
+								"content",
+								"asyncjobs",
+								"jcr:content",
+								"views",
+								"list.0.50.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Job",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://author-p46656-e217387.adobeaemcloud.com/bin/asynccommand?optype=RMJOB&jobid=2022/12/20/15/23/70c69e83-66e8-406e-b570-4d4ae6909378_58371",
+							"protocol": "https",
+							"host": [
+								"author-p46656-e217387",
+								"adobeaemcloud",
+								"com"
+							],
+							"path": [
+								"bin",
+								"asynccommand"
+							],
+							"query": [
+								{
+									"key": "optype",
+									"value": "RMJOB"
+								},
+								{
+									"key": "jobid",
+									"value": "2022/12/20/15/23/70c69e83-66e8-406e-b570-4d4ae6909378_58371"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
